@@ -4,6 +4,8 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 
+import kr.or.dgit.post.service.InitSettingService;
+
 public class PostMain extends JFrame {
 
 
@@ -16,10 +18,10 @@ public class PostMain extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					PostContent psc= new PostContent();
 					PostMain frame = new PostMain();
-					psc.setVisible(true);
-					
+					PostContent pc= new PostContent();
+					frame.add(pc);
+					frame.setVisible(true);
 					/*InitSettingService init = new InitSettingService();
 					init.initSetting();*/
 				} catch (Exception e) {

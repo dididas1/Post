@@ -7,10 +7,11 @@ create table if not exists post(
 	building2 int(5) null
 );
 
+drop table post;
 delete from post;
 
 
-LOAD data LOCAL INFILE 'D:/workspace_mybatis/postZipFinder/DataFiles/세종특별자치시.txt' 
+LOAD data LOCAL INFILE 'C:/Users/lee/git/Post/DataFiles세종특별자치시.txt' 
 INTO table  post   
 character set 'euckr'  
 fields TERMINATED by '|' 

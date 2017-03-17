@@ -7,6 +7,7 @@ import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -33,7 +34,7 @@ public class Postsearch extends JPanel implements ActionListener {
 	 */
 	public Postsearch() {
 		setLayout(new BorderLayout(0, 0));
-
+		
 		JPanel panel_1 = new JPanel();
 		add(panel_1, BorderLayout.NORTH);
 
@@ -80,10 +81,10 @@ public class Postsearch extends JPanel implements ActionListener {
 
 		table = new JTable();
 		table.addMouseListener(new MouseAdapter() {
-
+			
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				getSelectedObject();
+				setObject(getSelectedObject());
 				super.mouseClicked(e);
 			}
 			
@@ -109,34 +110,48 @@ public class Postsearch extends JPanel implements ActionListener {
 
 	}
 	
+
+	
 	public Post getObj(){
 		String sido= comboBox.getSelectedItem().toString();
 		String doro= textField.getText();
 		return new Post(sido, doro);
 		
 	}
-	public Post getSelectedObject() {
+	public String[] getSelectedObject() {
 		int selectedidx= table.getSelectedRow();
 		if(selectedidx==-1)return null;
 		String zipcode= table.getValueAt(selectedidx, 0).toString();
-		String sido= table.getValueAt(selectedidx, 0).toString();
-		String sigungu= table.getValueAt(selectedidx, 0).toString();
-		String doro= table.getValueAt(selectedidx, 0).toString();
-		return new Post(zipcode, sido, sigungu, doro);
+		String sido= table.getValueAt(selectedidx, 1).toString();
+		return new String[]{zipcode,sido};
 	}
 	
-	public void setObject(Post post){
-		postContent.setTextField(post.getZipCode());
-		postContent.setTextField_1(post.getSido()+post.getSigungu()+post.getDoro());
+	public void setObject(String[] t){
+		postContent.setTfNum(t[0].toString());
+		postContent.setTfaddress(t[1].toString());
 	}
 
+	public boolean isEmpty(){
+		if(textField.getText().equals("")){
+			return false;
+		}else{
+			return true;
+		}
+		
+		
+	}
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnNewButton) {
 			actionPerformedBtnNewButton(e);
 		}
 	}
 	protected void actionPerformedBtnNewButton(ActionEvent e) {
-		table.setModel(new DefaultTableModel(getRowData(),getColumn()));
+		if(isEmpty()){
+			table.setModel(new DefaultTableModel(getRowData(),getColumn()));
+		}else{
+			JOptionPane.showMessageDialog(null, "도로명을 입력해주세요");
+		}
+		
 		
 	}
 }
