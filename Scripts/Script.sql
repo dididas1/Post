@@ -11,6 +11,8 @@ drop table post;
 delete from post;
 
 
+		
+
 LOAD data LOCAL INFILE 'C:/Users/lee/git/Post/DataFiles세종특별자치시.txt' 
 INTO table  post   
 character set 'euckr'  

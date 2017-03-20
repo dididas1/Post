@@ -13,10 +13,11 @@
 	<sql id="selectSql">
 		SELECT zipcode, sido, sigungu, doro, building1, building2
 		FROM post 
+	
 	</sql>
 	
 	<select id="serchSido" resultMap="Postresult" parameterType="Post">
 		<include refid="selectSql"/>
-		where sido LIKE concat('%',#{sido},'%') and doro LIKE concat('%',#{doro},'%')
+			where sido = #{sido} and doro = #{doro}
 	</select>
 </mapper>

@@ -32,6 +32,7 @@ public class Postsearch extends JPanel implements ActionListener {
 	/**
 	 * Create the panel.
 	 */
+	
 	public Postsearch() {
 		setLayout(new BorderLayout(0, 0));
 		
