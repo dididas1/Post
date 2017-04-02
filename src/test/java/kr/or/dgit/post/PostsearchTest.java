@@ -32,8 +32,8 @@ public class PostsearchTest {
 		Post post= new Post();
 		post.setSido("대구");
 		post.setDoro("상화로");
-		List<Post> list= new ArrayList<>();
-		list= postService.serchSido(post);
+		List<Post> list= postService.serchSido(post);
+	
 		List<Post> emplist = Collections.emptyList();
 		Assert.assertNotEquals(emplist, list);
 	}
